@@ -1,0 +1,62 @@
+import asyncio
+import importlib
+
+from pyrogram import idle
+from pytgcalls.exceptions import NoActiveGroupCall
+
+import config
+from AnonXMusic import LOGGER, app, userbot
+from AnonXMusic.core.call import Anony
+from AnonXMusic.misc import sudo
+from AnonXMusic.plugins import ALL_MODULES
+from AnonXMusic.utils.database import get_banned_users, get_gbanned
+from config import BANNED_USERS
+
+
+async def init():
+    if (
+        not config.STRING1
+        and not config.STRING2
+        and not config.STRING3
+        and not config.STRING4
+        and not config.STRING5
+    ):
+        LOGGER(__name__).error("Asistan istemci değişkenleri tanımlanmadı, çıkılıyor...")
+        exit()
+    await sudo()
+    try:
+        users = await get_gbanned()
+        for user_id in users:
+            BANNED_USERS.add(user_id)
+        users = await get_banned_users()
+        for user_id in users:
+            BANNED_USERS.add(user_id)
+    except:
+        pass
+    await app.start()
+    for all_module in ALL_MODULES:
+        importlib.import_module("AnonXMusic.plugins" + all_module)
+    LOGGER("AnonXMusic.plugins").info("Modüller Başarılı Şekilde Yüklendi.")
+    await userbot.start()
+    await Anony.start()
+    try:
+        await Anony.stream_call("https://telegra.ph/file/9796d04afa1dcd73d16da.jpg")
+    except NoActiveGroupCall:
+        LOGGER("AnonXMusic").error(
+            "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
+        )
+        exit()
+    except:
+        pass
+    await Anony.decorators()
+    LOGGER("AnonXMusic").info(
+        "LivaMuzikBotu Başarılı Bir Şekilde Başlatıldı.\n\nİyi Dinlemeler dileriz.@Scrable"
+    )
+    await idle()
+    await app.stop()
+    await userbot.stop()
+    LOGGER("AnonXMusic").info("Bot Kapatılıyor..")
+
+
+if __name__ == "__main__":
+    asyncio.get_event_loop().run_until_complete(init())
