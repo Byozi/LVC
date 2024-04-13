@@ -94,7 +94,7 @@ update
 packages
 node
 installation
-pprint "\n\n\n\n\nAnonXMusic Installation Completed !" "cgreen"
+pprint "\n\n\n\n\nBOT HAZIR HERSEY KURULDU PATRON" "cgreen"
 sleep 1
 clear
 
