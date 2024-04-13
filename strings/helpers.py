@@ -152,4 +152,3 @@ Devam eden akışın oynatma hızını kontrol edebilirsiniz. [Yalnızca yöneti
 /speed veya /playback : Grubun sesli oynatma hızını ayarlamak için.
 /cspeed veya /cplayback : Kanalın sesli oynatma hızını ayarlamak için.
 """
-```
