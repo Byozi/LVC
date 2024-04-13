@@ -123,7 +123,6 @@ HELP_11 = """
 /playforce veya /vplayforce : Devam eden akışı durdurur ve istenen parçayı çalmaya başlar.
 """
 
-```python
 HELP_12 = """
 <b><u>KARIŞTIRMA KUYRUK :</b></u>
 
